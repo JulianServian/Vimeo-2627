@@ -937,6 +937,12 @@ body {
     font-size: 26px;
 }
 
+.opcion-ia-escritorio,
+.opcion-ia p,
+.opcion-ia button {
+    display: none;
+}
+
 .enterprise {
     background-color: #f5f7f9;
     padding: 30px 14px 80px;
@@ -1790,41 +1796,116 @@ body {
     }
 
     .ia {
-        padding: 80px max(40px, calc((100% - 1200px) / 2));
+        padding: 32px max(40px, calc((100% - 1200px) / 2)) 80px;
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: start;
-        column-gap: 48px;
+        column-gap: 56px;
     }
 
     .ia h2 {
-        grid-column: 1 / -1;
-        font-size: 40px;
+        grid-column: 1;
+        grid-row: 1;
+        max-width: 500px;
+        margin: 0 0 28px;
+        text-align: left;
+        font-size: clamp(32px, 3vw, 40px);
     }
 
     .video-ia {
-        height: 430px;
+        grid-column: 2;
+        grid-row: 1;
+        height: auto;
+        aspect-ratio: 16 / 9;
     }
 
-    .tarjeta-ia {
+    .controles-video {
         grid-column: 2;
-        grid-row: 2 / span 2;
-        margin-top: 0;
+        grid-row: 2;
+        height: 84px;
+        padding: 0 24px;
     }
 
     .opciones-ia {
-        grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 32px;
-        margin-top: 24px;
+        grid-column: 1;
+        grid-row: 2;
+        padding: 0;
+        margin: 0;
     }
 
     .opcion-ia {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        margin: 0 0 28px;
+        padding: 0;
+    }
+
+    .opcion-ia-escritorio {
+        display: flex;
+    }
+
+    .opcion-ia > span:first-child {
+        flex: 1;
+        font-size: 16px;
+        line-height: 1.45;
+    }
+
+    .opcion-ia > span:last-child {
+        font-size: 22px;
+        line-height: 1;
+    }
+
+    .opcion-ia:not(.opcion-ia-activa) > span:first-child br,
+    .opcion-ia-activa > span:first-child br:first-of-type {
+        display: none;
+    }
+
+    .opcion-ia-activa {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 12px 16px;
         margin: 0;
-        padding: 24px;
+        padding: 32px;
+        border-radius: 16px;
         background-color: #182029;
+    }
+
+    .opcion-ia-activa > span:first-child {
+        max-width: 460px;
+    }
+
+    .opcion-ia-activa p {
+        display: block;
+        grid-column: 1 / -1;
+        margin: 0;
+        color: #b7c0ca;
+        font-size: 16px;
+        line-height: 1.55;
+    }
+
+    .opcion-ia-activa button {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 275px;
+        min-height: 48px;
+        padding: 0 20px;
+        border: 0;
         border-radius: 12px;
+        background-color: #fff;
+        color: #111;
+        font: inherit;
+        font-size: 15px;
+    }
+
+    .opcion-ia-activa button span {
+        font-size: 20px;
+    }
+
+    .tarjeta-ia {
+        display: none;
     }
 
     .enterprise {
