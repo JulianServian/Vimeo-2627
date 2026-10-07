@@ -555,6 +555,8 @@ body {
     max-width: 1000px;
     margin: 0 auto;
     padding: 70px 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .video-testimonio {
@@ -564,6 +566,10 @@ body {
     border-radius: 16px;
     overflow: hidden;
     background-color: #d5d5ce;
+}
+
+.tarjeta-autor {
+    display: none;
 }
 
 .video-colem {
@@ -606,6 +612,7 @@ body {
 
 .texto-solucion {
     padding-top: 20px;
+    order: 2;
 }
 
 .texto-solucion h3 {
@@ -653,6 +660,11 @@ body {
     margin: 0 auto;
     padding: 40px 30px;
     background-color: #ffffff;
+    order: 3;
+}
+
+.video-testimonio {
+    order: 1;
 }
 
 .tipo {
@@ -770,7 +782,7 @@ body {
 @media (max-width: 600px) {
 
     .seccion-solucion {
-        padding: 40px 28px;
+        padding: 40px 28px 0;
     }
 
     .video-testimonio {
@@ -792,7 +804,9 @@ body {
     }
 
     .seccion-tipos {
-        padding: 30px 28px;
+        max-width: none;
+        margin: 40px 0 0;
+        padding: 30px 0;
     }
 
     .tipo {
@@ -810,6 +824,18 @@ body {
 
     .tarjeta-opinion h3 {
         font-size: 20px;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 899px) {
+    .seccion-solucion {
+        padding-bottom: 0;
+    }
+
+    .seccion-tipos {
+        max-width: none;
+        margin: 70px 0 0;
+        padding: 40px 0;
     }
 }
 
@@ -1583,32 +1609,163 @@ body {
 
     .seccion-solucion {
         max-width: 1280px;
-        padding: 96px 40px;
+        padding: 24px max(22px, calc((100% - 1320px) / 2)) 64px;
         display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-        align-items: center;
-        gap: 64px;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        grid-template-areas:
+            "intro intro"
+            "media tipos";
+        align-items: start;
+        gap: 40px;
     }
 
     .video-testimonio {
-        height: 480px;
+        grid-area: media;
+        height: min(600px, 58vw);
+        border-radius: 12px;
+    }
+
+    .boton-play {
+        display: none;
+    }
+
+    .logo-video {
+        display: none;
+    }
+
+    .tarjeta-autor {
+        position: absolute;
+        right: 24px;
+        bottom: 16px;
+        left: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.76);
+        color: #111820;
+        backdrop-filter: blur(12px);
+        font-size: 12px;
+    }
+
+    .avatar-autor {
+        display: flex;
+        width: 34px;
+        height: 34px;
+        flex: 0 0 34px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #111820;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .identidad-autor,
+    .antiguedad-autor {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+    }
+
+    .identidad-autor strong {
+        font-size: 13px;
+    }
+
+    .identidad-autor small,
+    .antiguedad-autor {
+        font-size: 10px;
+    }
+
+    .separador-autor {
+        margin: 0 6px;
+    }
+
+    .boton-play-autor {
+        display: flex;
+        width: 56px;
+        height: 34px;
+        flex: 0 0 56px;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        border-radius: 8px;
+        background: #16c7e9;
+        color: #111820;
     }
 
     .texto-solucion {
+        grid-area: intro;
         padding-top: 0;
     }
 
+    .texto-solucion h3,
+    .texto-solucion .datos-persona {
+        display: none;
+    }
+
+    .texto-solucion {
+        max-width: 700px;
+    }
+
     .texto-solucion h2 {
-        margin-top: 32px;
-        font-size: 40px;
+        margin: 0 0 14px;
+        font-size: clamp(28px, 3vw, 40px);
+        line-height: 1.15;
+    }
+
+    .texto-solucion > p:not(.datos-persona) {
+        max-width: 650px;
+        margin: 0 0 24px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .boton-planes {
+        gap: 16px;
+        margin-top: 4px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        font-size: 12px;
     }
 
     .seccion-tipos {
-        max-width: 1280px;
-        padding: 32px 40px 80px;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-gap: 64px;
+        grid-area: tipos;
+        display: flex;
+        flex-direction: column;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tipo {
+        gap: 16px;
+    }
+
+    .icono-tipo {
+        width: 24px;
+        min-width: 24px;
+    }
+
+    .icono-tipo img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .contenido-tipo h3 {
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .contenido-tipo h3 span {
+        font-size: 16px;
+    }
+
+    .contenido-tipo p {
+        font-size: 13px;
+        line-height: 1.35;
     }
 
     .tipo {
